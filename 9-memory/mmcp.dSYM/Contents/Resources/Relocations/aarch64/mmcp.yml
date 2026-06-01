@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     "/Users/imjunhyeog/Desktop/시스템 프로그래밍/코드 실습/9-memory/mmcp"
+relocations:     []
+...
