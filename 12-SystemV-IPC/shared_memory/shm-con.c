@@ -1,6 +1,6 @@
 #include "Myshm.h"
 
-int mian(void) {
+int main(void) {
   int i, shmid;
   char c;
 
