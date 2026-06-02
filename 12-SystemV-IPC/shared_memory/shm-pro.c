@@ -12,7 +12,7 @@ int key_pressed = 0;
 
 static void sig_handler(int signo){
   key_pressed++;
-  printf("continue to the next stgae");
+  printf("continue to the next stgae\n");
   if(key_pressed == 1 && signo == SIGINT)
     signal(SIGINT, sig_handler);
   else if(signo == SIGINT)
