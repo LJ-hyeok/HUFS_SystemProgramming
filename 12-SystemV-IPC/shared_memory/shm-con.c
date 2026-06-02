@@ -1,6 +1,29 @@
-#include "Myshm.h"
+#include <stdio.h>
+#include <semaphore.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/ipc.h>
+#include <sys/shm.h> //shared memory 기반 IPC 관련 함수
+#include <sys/types.h>
+#include <signal.h>
+
+int key_pressed = 0;
+
+static void sig_handler(int signo){
+  key_pressed++;
+  printf("continue to the next stgae");
+  if(key_pressed == 1 && signo == SIGINT)
+    signal(SIGINT, sig_handler);
+  else if(signo == SIGINT)
+    signal(SIGINT, SIG_DFL);
+}
 
 int main(void) {
+  size_t shsize = 1024;
+  const int key = 16000;
+  char *shm;
+  sem_t *mysem;
   int i, shmid;
   char c;
 
