@@ -40,7 +40,7 @@ int main(void){
       for(int i=0;i<10;i++) printf("%c", (char)shm[i]);
       sem_post(mysem);
       sleep(1);
-      printf("\n\n");
+      printf("\n");
       fflush(stdout);
     }
   }
