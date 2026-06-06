@@ -28,14 +28,14 @@ int main(int argc, char *argv[]) {
   servaddr.sin_port = htons(PORT);
 
   if(bind(sd, (struct sockaddr *) &servaddr, sizeof(servaddr)) < 0) {
-    fprintf(stderr, "can't bind to socket.\n", PORT);
+    fprintf(stderr, "can't bind to socket.\n");
     exit(1);
   }
   printf("UDP Echo Server[%d] \n", PORT);
 
   while(1) {
     cliaddrsize = sizeof(cliaddr);
-    bytes = recfrom(sd, data, MAX, 0, (struct sockaddr *)&cliaddr, &cliaddrsize);
+    bytes = recvfrom(sd, data, MAX, 0, (struct sockaddr *)&cliaddr, &cliaddrsize);
     if(bytes < 0) {
       fprintf(stderr, "can't receive data. \n");
       continue;
