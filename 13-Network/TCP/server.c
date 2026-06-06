@@ -43,6 +43,11 @@ int main(int argc, char *argv[]) {
   printf("connect!\n");
   close(sd);
 
+  if((pid = fork()) < 0) {
+    fprintf(stderr, "can't fork process.\n");
+    exit(1);
+  }
+
   if(pid == 0) { //자식 프로세스: 메시지 수신
     int bytes;
     while(1) { 
