@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <signal.h>
 
 #define MAX 1024
 #define PORT 30000
@@ -21,7 +22,18 @@ int main(int argc, char *argv[]) {
     fprintf(stderr, "can't open socket.\n");
     exit(1);
   }
-  printf("connet!\n");
+
+  bzero((char*)&servaddr, sizeof(servaddr));
+  servaddr.sin_family = AF_INET;
+  servaddr.sin_addr.s_addr = inet_addr(HOSTADDR);
+  servaddr.sin_port = htons(PORT);
+
+  if(connect(sd, (struct sockaddr *) &servaddr, sizeof(servaddr)) < 0) {
+    fprintf(stderr, "can't connect to server.\n");
+    exit(1);
+  }
+
+  printf("connect!\n");
 
   if((pid = fork()) < 0) {
     fprintf(stderr, "can't fork process.\n");

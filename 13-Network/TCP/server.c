@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <signal.h>
 
 #define MAX 1024 //max client data length
 #define PORT 30000 //server prot
@@ -19,7 +20,7 @@ int main(int argc, char *argv[]) {
   char buf[MAX];
 
   if((sd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
-    frpintf(stderr, "can't open socket.\n");
+    fprintf(stderr, "can't open socket.\n");
     exit(1);
   }
   bzero((char*) &servaddr, sizeof(servaddr));
